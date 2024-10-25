@@ -33,3 +33,9 @@ class Book:
             print(f"{self.user.studentName} | Data de entrega máxima foi excedido.\nCréditos restantes: {self.user.restrictionCredit}")
         self.toLoan = False; self.user = None; # remove a referencia do usuario ja q o livro ja foi devolvido
             
+'''
+lembrete, o sistema sera usado pelo funcionario da biblioteca, não é 'necessidade' o nome do livro, mas o iD para acesso ao livro, ja que ele ja tera acesso a isso no sistema ( a que livro tal ID corresponde)
+
+estudar bddI p fazer o banco -> historico 'com lupa de cada livro'
+( 1 livro : N pessoas ) e a 'tabela' com os emprestimos recentes (todos os livros)
+'''
