@@ -18,8 +18,10 @@ class DeckOfCards:
     # método construtor - que nesse caso cria o baralho assim q uma instancia for criada
         self.__cardsSet = []
         # "arquitetura de matriz"
-        for suit in ["Ouros", "Espadas", "Copas", "Paus"]: # linhas
-            for value in ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Valete", "Dama", "Rei"]: # colunas
+        for suit in ['Ouros', 'Espadas', 'Copas', 'Paus']:
+            # linhas
+            for value in ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Valete', 'Dama', 'Rei']:
+                # colunas
                 self.__cardsSet.append(UnitaryCard(value, suit))
 
 
@@ -27,9 +29,18 @@ class DeckOfCards:
         random.shuffle(self.__cardsSet)
     
     def dealCards(self, numberOfPlayers):
-        for player in players:
-            for i in range(len(self.__cardsSet)):
-                player.addCard(self.__cardsSet.pop())
-
+        self.numberOfPlayers = numberOfPlayers;
+        if not (1 <= self.numberOfPlayers <= 4):
+            raise ValueError("Número de jogadores deve ser entre 1 e 4.")
+        
+        hands = []  # armazenará as mãos dos jogadores
+        for _ in range(numberOfPlayers):
+            hands.append([])  # add list vazia para cada jogador
+    # distribuir as cartas do baralho entre os jogadores (maos)
+        while self.__cardsSet:
+            for hand in hands:
+                if self.__cardsSet:
+                    hand.append(self.__cardsSet.pop(0))  # Remove a primeira carta do baralho e adiciona à mão do jogador
+        return hands
     def __str__(self): # imprimir
         return f"Baralho c/ {len(self.__cardsSet)} cartas"
