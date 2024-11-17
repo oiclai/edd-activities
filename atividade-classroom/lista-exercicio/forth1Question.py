@@ -10,4 +10,9 @@ for _ in range(3):
     nome = input("Digite o nome do titular: ")
     conta = ContaCorrente(numero, saldo, nome)
     listandoContas.append(conta)
-print(listandoContas)
+
+    def get_conta(numero, listandoContas):
+        for conta in listandoContas:
+            if conta.numero == numero:
+                return conta
+        return None

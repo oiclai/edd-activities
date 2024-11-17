@@ -6,7 +6,9 @@ class ContaCorrente:
     def depositar(self, valor):
         self.saldo += valor
     def sacar(self, valor):
-        if self.saldo < valor:
-            self.sucessoSaque = False
-        self.saldo -= valor
-        self.sucessoSaque = True
+        self.sucessoSaque = False 
+        if self.saldo >= valor:
+            self.saldo -= valor
+            self.sucessoSaque = True
+
+    
