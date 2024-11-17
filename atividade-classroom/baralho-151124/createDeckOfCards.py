@@ -26,10 +26,10 @@ class DeckOfCards:
     def shuffle(self): # embaralhar
         random.shuffle(self.__cardsSet)
     
-    def dealCards(self, *jogadores, qtd_cartas):
-        for jogador in jogadores:
-            for i in range(qtd_cartas):
-                jogador.add_carta(self.__cardsSet.pop()) # Alem de adionar cartas na mao, tambem remove a carta do baralho
-    
+    def dealCards(self, numberOfPlayers):
+        for player in players:
+            for i in range(len(self.__cardsSet)):
+                player.addCard(self.__cardsSet.pop())
+
     def __str__(self): # imprimir
-        return f"Baralho com {len(self.__cartas)} cartas"
+        return f"Baralho c/ {len(self.__cardsSet)} cartas"
