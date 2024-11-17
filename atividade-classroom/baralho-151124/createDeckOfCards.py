@@ -33,8 +33,7 @@ class DeckOfCards:
         cardsPerPlayer = totalDeckCards // numberOfPlayers;
         cardsToDeal = cardsPerPlayer * numberOfPlayers;
         self.__cardsSet = self.__cardsSet[:cardsToDeal]
-        self.numberOfPlayers = numberOfPlayers;
-        if not (1 <= self.numberOfPlayers <= 4):
+        if not (1 <= numberOfPlayers <= 4):
             raise ValueError("Número de jogadores deve ser entre 1 e 4.")
         
         hands = []  # armazenará as mãos dos jogadores
