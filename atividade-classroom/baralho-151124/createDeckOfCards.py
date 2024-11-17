@@ -29,6 +29,10 @@ class DeckOfCards:
         random.shuffle(self.__cardsSet)
     
     def dealCards(self, numberOfPlayers):
+        totalDeckCards = len(self.__cardsSet);
+        cardsPerPlayer = totalDeckCards // numberOfPlayers;
+        cardsToDeal = cardsPerPlayer * numberOfPlayers;
+        self.__cardsSet = self.__cardsSet[:cardsToDeal]
         self.numberOfPlayers = numberOfPlayers;
         if not (1 <= self.numberOfPlayers <= 4):
             raise ValueError("Número de jogadores deve ser entre 1 e 4.")
@@ -40,7 +44,8 @@ class DeckOfCards:
         while self.__cardsSet:
             for hand in hands:
                 if self.__cardsSet:
-                    hand.append(self.__cardsSet.pop(0))  # Remove a primeira carta do baralho e adiciona à mão do jogador
+                    hand.append(self.__cardsSet.pop(0))
+                    # remove a primeira carta do baralho e adiciona à mão do jogador
         return hands
     def __str__(self): # imprimir
-        return f"Baralho c/ {len(self.__cardsSet)} cartas"
+        return f"Baralho c/ {len(self.__cardsSet)}"
