@@ -68,15 +68,15 @@ class Battle:
         print('Rodada encerrada!')
 
     def determineWinner(self):
-        # Pontuação do Jogador 1: soma das cartas na mão e no montante
+        # pontuação do Jogador 1: soma das cartas na mão e no montante
         player1_points = sum(self.__player1.getCardValue(card) for card in self.__player1.getHand()) + \
                          sum(self.__player1.getCardValue(card) for card in self.__player1.getMontante())
 
-        # Pontuação do Jogador 2: soma das cartas na mão e no montante
+        # pontuação do Jogador 2: soma das cartas na mão e no montante
         player2_points = sum(self.__player2.getCardValue(card) for card in self.__player2.getHand()) + \
                          sum(self.__player2.getCardValue(card) for card in self.__player2.getMontante())
 
-        # Determinação do vencedor
+        # quem é oencedor 
         if player1_points > player2_points:
             return f'> {self.__player1.name} VENCEU! {player1_points} PONTOS X {player2_points} PONTOS'
         elif player2_points > player1_points:
