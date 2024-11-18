@@ -1,95 +1,88 @@
-from functionSource import clear, pauseTime
-from createDeckOfCards import DeckOfCards
-from players import Player
+from players import Jogador; from createDeckOfCards import Baralho; from predefCard import Carta
+class Jogo:
 
-class Battle:
-    def __init__(self):
-        self.__player1 = Player('JOGADOR 1')
-        self.__player2 = Player('JOGADOR 2')
-        self.players = [self.__player1, self.__player2]
-        self.__deckOfCards = DeckOfCards()
-        self.cardsDraw = []
 
-    def startBattle(self):
-        print('> INICIANDO BATALHA !')
-        pauseTime()
-        clear()
-        print('> EMBARALHANDO AS CARTAS ...')
-        pauseTime()
-        clear()
-        self.__deckOfCards.shuffle()
-        print('> DISTRIBUINDO AS CARTAS PARA OS JOGADORES ...')
-        pauseTime()
-        clear()
-        self.__deckOfCards.dealCards(self.__player1, self.__player2)
+    def __init__(self, numero_jogadores: int, n_max_rodadas: int = 100):
+        self.__baralho: Baralho = Baralho()
+        self.__numero_jogadores = numero_jogadores
+        self.__jogador_a: Jogador = Jogador(input(f"Informe o nome do jogador 1: "))
+        self.__jogador_b: Jogador = Jogador(input(f"Informe o nome do jogador 2: "))
+        self.__baralho.embaralhar()
+        self.__baralho.distribuir([self.__jogador_a, self.__jogador_b])
+        self.__pilha: list[Carta] = []
+        self.__n_max_rodadas:int = n_max_rodadas
+        self._n_rodada:int = 1
 
-    def round(self):
-        clear()
-        print(f'''RODADA INICIADA !
-            JOGADOR 1 PEGA CARTA ...''')
-        pauseTime()
-        clear()
-        card1 = self.__player1.drawCard()
-        print(f'''CARTA PUXADA: {card1}
-            JOGADOR 2 PEGA CARTA ...''')
-        pauseTime()
-        clear()
-        card2 = self.__player2.drawCard()
-        print(f'''CARTA PUXADA: {card2}
-            COMPARANDO AS CARTAS...''')
-        pauseTime()
-        clear()
-        card1_value = self.__player1.getCardValue(card1)
-        card2_value = self.__player2.getCardValue(card2)
 
-        if card1_value > card2_value:
-            print('> O GANHADOR DA RODADA: JOGADOR 1 !')
-            if self.cardsDraw:
-                for card in self.cardsDraw:
-                    self.__player1.addCard(card)
-                self.cardsDraw = []
-            self.__player1.addCard(card1)
-            self.__player1.addCard(card2)
-
-        elif card2_value > card1_value:
-            print('> O GANHADOR DA RODADA: JOGADOR 2 !')
-            if self.cardsDraw:
-                for card in self.cardsDraw:
-                    self.__player2.addCard(card)
-                self.cardsDraw = []
-            self.__player2.addCard(card1)
-            self.__player2.addCard(card2)
-
+    def rodada(self) -> Jogador|None:
+        print("#" * 20)
+        self.exibir_total_cartas()
+        vencedor = None
+        carta_a = self.__jogador_a.remover_carta()
+        print(f"{self.__jogador_a} tirou a carta {carta_a}")
+        carta_b = self.__jogador_b.remover_carta()
+        print(f"{self.__jogador_b} tirou a carta {carta_b}")
+        if carta_a > carta_b:
+            vencedor = self.__jogador_a
+        elif carta_b > carta_a:
+            vencedor = self.__jogador_b
         else:
-            print('> EMPATE !')
-            self.cardsDraw.append(card1)
-            self.cardsDraw.append(card2)
+            self.__pilha.append(carta_a)
+            self.__pilha.append(carta_b)
 
-        print('Rodada encerrada!')
 
-    def determineWinner(self):
-        # pontuação do Jogador 1: soma das cartas na mão e no montante
-        player1_points = sum(self.__player1.getCardValue(card) for card in self.__player1.getHand()) + \
-                         sum(self.__player1.getCardValue(card) for card in self.__player1.getMontante())
+        if vencedor:
+            vencedor.add_carta_na_base(carta_a)
+            vencedor.add_carta_na_base(carta_b)
+            for carta in self.__pilha:
+                vencedor.add_carta_na_base(carta)
+            self.__pilha = []
+        return vencedor
 
-        # pontuação do Jogador 2: soma das cartas na mão e no montante
-        player2_points = sum(self.__player2.getCardValue(card) for card in self.__player2.getHand()) + \
-                         sum(self.__player2.getCardValue(card) for card in self.__player2.getMontante())
 
-        # quem é oencedor 
-        if player1_points > player2_points:
-            return f'> {self.__player1.name} VENCEU! {player1_points} PONTOS X {player2_points} PONTOS'
-        elif player2_points > player1_points:
-            return f'> {self.__player2.name} VENCEU! {player2_points} PONTOS X {player1_points} PONTOS'
+    def run(self):
+
+
+        while not self.__eh_hora_parar():
+            self._n_rodada += 1
+            vencedor = self.rodada()
+            if vencedor:
+                print(f"O vencedor da rodada #{self._n_rodada} é {vencedor}")
+            else:
+                print("A rodada deu empate")
+
+
+        vencedor_jogo = None
+        if self.__jogador_a.total_cartas > self.__jogador_b.total_cartas:
+            vencedor_jogo = self.__jogador_a
+        elif self.__jogador_a.total_cartas < self.__jogador_b.total_cartas:
+            vencedor_jogo = self.__jogador_b
+
+
+        if vencedor_jogo:
+            print(f"O vencedor do jogo é {vencedor_jogo}")
+            self.exibir_total_cartas()
         else:
-            return f'> ATENÇÃO: EMPATE! {player1_points} PONTOS X {player2_points} PONTOS'
-
-# Simulação da batalha
-battle = Battle()
-battle.startBattle()
+            print("O jogo deu empatado")
 
 
-while battle.__player1.cardsInHand() > 0 and battle.__player2.cardsInHand() > 0:
-    battle.round()
+    def __eh_hora_parar(self) -> bool:
+        if not self.__jogador_a.possui_cartas:
+            return True
+        if not self.__jogador_b.possui_cartas:
+            return True
+        if self._n_rodada >= self.__n_max_rodadas:
+            return True
+        return False
 
-print(battle.determineWinner())
+
+    def exibir_total_cartas(self):
+        print(f"{self.__jogador_a}: {self.__jogador_a.total_cartas} cartas")
+        print(f"{self.__jogador_b}: {self.__jogador_b.total_cartas} cartas")
+
+
+
+
+if __name__ == "__main__":
+    jogo = Jogo(numero_jogadores=2, n_max_rodadas=2000)
+    jogo.run()

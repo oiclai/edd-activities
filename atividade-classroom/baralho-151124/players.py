@@ -1,26 +1,34 @@
-# não compreendi bem a função de um montante, 
-# mas acredito que seja uma lista que armazena as cartas
-# que o jogador tirou do baralho
-class Player:
-    def __init__(self, name):
-        self.__name = name; self.points = 0; self.montante = []; self.__hand = []
-    def addCard(self, card):
-        self.__hand.append(card)
-    def pushCard(self):
-        return self.__hand.pop()
-    def cardsInHand(self):
-        return len(self.__hand)
-    def getCardValue(self, card):
-        return card.numericValue
-    def drawCard(self, card):
-        self.montante.insert(0, card)
-    def getCards(self):
-        return self.__cards
-    def showCards(self):
-        print(F"Cartas de {self.nome}:")
-        for card in self.__hand:
-            print(f'{card}\n')
-    def getPoints(self):
-        return self.points
+from createDeckOfCards import Carta;
+class Jogador:
+
+
+    def __init__(self, nome):
+        self.nome = nome
+        self.cartas: list[Carta] = []
+
+
+    def add_carta_no_topo(self, carta: Carta):
+        self.cartas.append(carta)
+
+
+    def add_carta_na_base(self, carta: Carta):
+        self.cartas.insert(0, carta)
+
+
+    def remover_carta(self) -> Carta:
+        return self.cartas.pop(-1)
+
+
+    @property
+    def possui_cartas(self) -> bool:
+        return bool(self.cartas)
+
+
+    @property
+    def total_cartas(self) -> int:
+        return len(self.cartas)
+
+
     def __str__(self):
-        return self.__name
+        return self.nome
+
