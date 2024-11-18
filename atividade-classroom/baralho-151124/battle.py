@@ -68,19 +68,28 @@ class Battle:
         print('Rodada encerrada!')
 
     def determineWinner(self):
-        player1_points = sum(self.__player1.getCardValue(card) for card in self.__player1.getHand())
-        player2_points = sum(self.__player2.getCardValue(card) for card in self.__player2.getHand())
+        # Pontuação do Jogador 1: soma das cartas na mão e no montante
+        player1_points = sum(self.__player1.getCardValue(card) for card in self.__player1.getHand()) + \
+                         sum(self.__player1.getCardValue(card) for card in self.__player1.getMontante())
 
+        # Pontuação do Jogador 2: soma das cartas na mão e no montante
+        player2_points = sum(self.__player2.getCardValue(card) for card in self.__player2.getHand()) + \
+                         sum(self.__player2.getCardValue(card) for card in self.__player2.getMontante())
+
+        # Determinação do vencedor
         if player1_points > player2_points:
-            return f'> {self.__player1.name} VENCEU ! {player1_points} PONTOS X {player2_points} PONTOS'
+            return f'> {self.__player1.name} VENCEU! {player1_points} PONTOS X {player2_points} PONTOS'
         elif player2_points > player1_points:
-            return f'> {self.__player2.name} VENCEU ! {player2_points} PONTOS X {player1_points} PONTOS'
+            return f'> {self.__player2.name} VENCEU! {player2_points} PONTOS X {player1_points} PONTOS'
         else:
-            return f'> ATENÇÃO: EMPATE ! {player1_points} PONTOS X {player2_points} PONTOS'
+            return f'> ATENÇÃO: EMPATE! {player1_points} PONTOS X {player2_points} PONTOS'
 
-# batalha
-battle = Battle()  # ciando a batalha (instância da classe Battle)
+# Simulação da batalha
+battle = Battle()
 battle.startBattle()
+
+
 while battle.__player1.cardsInHand() > 0 and battle.__player2.cardsInHand() > 0:
     battle.round()
+
 print(battle.determineWinner())
