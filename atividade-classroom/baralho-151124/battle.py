@@ -22,7 +22,7 @@ class Battle:
         def __init__(self):
             self.__player1 = Player()  # Defina a classe Player adequadamente
             self.__player2 = Player()
-            self.cartas_empate = []
+            self.cardsDraw = []
 
         def round(self):
             clear()
@@ -40,26 +40,26 @@ class Battle:
 
             if card1_value > card2_value:
                 print("Jogador 1 ganha a rodada!")
-                if self.cartas_empate:
-                    for carta in self.cartas_empate:
+                if self.cardsDraw:
+                    for carta in self.cardsDraw:
                         self.__player1.addCard(carta)
-                    self.cartas_empate = []
+                    self.cardsDraw = []
                 self.__player1.addCard(card1)
                 self.__player1.addCard(card2)
 
             elif card2_value > card1_value:
                 print("Jogador 2 ganha a rodada!")
-                if self.cartas_empate:
-                    for carta in self.cartas_empate:
+                if self.cardsDraw:
+                    for carta in self.cardsDraw:
                         self.__player2.addCard(carta)
-                    self.cartas_empate = []
+                    self.cardsDraw = []
                 self.__player2.addCard(card1)
                 self.__player2.addCard(card2)
 
             else:
                 print("Empate!")
-                self.cartas_empate.append(card1)
-                self.cartas_empate.append(card2)
+                self.cardsDraw.append(card1)
+                self.cardsDraw.append(card2)
 
             print("Rodada encerrada!")
 
