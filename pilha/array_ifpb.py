@@ -1,9 +1,5 @@
 class ErroTipo(Exception):
     pass
-
-
-
-
 class Array:
 
 

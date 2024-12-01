@@ -1,4 +1,4 @@
-from pilha import Pilha, PilhaVaziaException
+from pilha.pilha import Pilha, PilhaVaziaException
 
 
 def test_pilha():

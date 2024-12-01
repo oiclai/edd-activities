@@ -1,4 +1,4 @@
-from array_ifpb import Array
+from pilha.array_ifpb import Array
 
 
 def test_array():
