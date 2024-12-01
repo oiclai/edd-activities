@@ -1,20 +1,13 @@
-from pilha.array_ifpb import Array
-
-
 class PilhaVaziaException(Exception):
     pass
-
-
 class PilhaCheiaException(Exception):
     pass
-
 class No:
     def __init__(self, dado: int, proximo=None):
         self.dado:int = dado
         self.proximo: No|None = proximo
     def __repr__(self):
         return f"No({self.dado})"
-
 class Pilha:
     def __init__(self):
         self.__topo: No|None = None
@@ -73,7 +66,5 @@ class Pilha:
             no_atual = no_atual.proximo
         resposta += "]"
         return resposta
-
-
     def imprimir(self):
         print(self)
