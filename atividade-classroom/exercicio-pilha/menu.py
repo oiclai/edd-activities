@@ -1,7 +1,12 @@
 from pilha import Pilha;
 pilhas = 1;
 while pilhas != 10:
-    print('''
+    print(f'''
+        Editor de Pilha v1.2
+    =====================================
+        Pilha Selecionada: {pilhas} de 10
+        [ ] <- topo
+    =====================================
             (e) Empilhar
             (d) Desempilhar
             (t) Tamanho
@@ -14,7 +19,8 @@ while pilhas != 10:
             (m) Escolher outra pilha
             (n) Conversão dec/bin
             (s) Sair
-    ''')
+    =====================================
+    ''');
     user_input = input('> ESCOLHA A OPÇÃO: ');
     match user_input:
         case 'e':
