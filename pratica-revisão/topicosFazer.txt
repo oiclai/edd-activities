@@ -5,7 +5,7 @@ Implemente o método para remover um elemento na pilha. (x)
 Implemente o método para obter um elemento da posição X da pilha. (x)
 Implemente o método para inverter a pilha. (x)
 
-Implemente o método para inserir um elemento na fila.
+Implemente o método para inserir um elemento na fila. (x)
 Implemente o método para remover um elemento na fila.
 Implemente o método para concatenar para a fila.
 Implemente o método para imprimir os elementos da fila.

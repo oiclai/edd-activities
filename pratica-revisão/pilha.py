@@ -55,7 +55,7 @@ class Pilha:
         while not pilhaAux.pilha_vazia:
             self.add_dado(pilhaAux.remove_dado().dado)
         return self
-# ============================== TESTE =====================================================
+# ======================================== TESTE ===========================================
 pilha = Pilha()
 pilha.add_dado(10)
 pilha.add_dado(20)
