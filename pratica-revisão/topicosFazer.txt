@@ -2,8 +2,8 @@ Considere que todas as estruturas devem ser implementadas de forma encadeada
 
 Implemente o método para inserir um elemento na pilha. (x)
 Implemente o método para remover um elemento na pilha. (x)
-Implemente o método para obter um elemento da posição X da pilha.
-Implemente o método para inverter a pilha.
+Implemente o método para obter um elemento da posição X da pilha. (x)
+Implemente o método para inverter a pilha. (x)
 
 Implemente o método para inserir um elemento na fila.
 Implemente o método para remover um elemento na fila.
