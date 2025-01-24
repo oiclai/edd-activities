@@ -38,3 +38,10 @@ class Fila:
             atual = atual.proximo
         return " -> ".join(elementos)
     
+    def concatenar_fila(self, fila1, fila2):
+        fila_concatenada = Fila() # vazia
+        while not fila1.vazio:
+            fila_concatenada.add_dado(fila1.remove_dado())
+        while not fila2:
+            fila_concatenada.add_dado(fila2.remove_dado())
+        return fila_concatenada

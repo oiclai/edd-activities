@@ -70,3 +70,27 @@ L.next = L.next.next # (no1) ---> (no3)
 print_lista(L)
 
 # como deletar 
+
+def inserir(self, dado, indice)
+# Inserção no índice desejado
+    novo_no = No(dado, indice)
+
+    # Caso especial: inserir no início (índice 0)
+    if indice == 0:
+        novo_no.proximo = self.head
+        self.head = novo_no
+    else:
+        # Percorre até o nó anterior à posição onde o novo nó será inserido
+        atual = self.head
+        for _ in range(indice - 1):
+            atual = atual.proximo
+        
+        # Insere o novo nó
+        novo_no.proximo = atual.proximo
+        atual.proximo = novo_no
+
+    # Atualiza a posição dos nós subsequentes
+    atual = novo_no.proximo
+    while atual:
+        atual.posicao += 1  # Aumenta a posição de cada nó subsequente
+        atual = atual.proximo
