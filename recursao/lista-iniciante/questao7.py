@@ -4,8 +4,11 @@ seria igual a 1 + 2 + 3 = 6
 '''
 
 def soma(n):
-    if n == 1:
-        return 1
+#    if n == 1:
+ #       return 1
+# ou 
+    if n ==0:
+        return 0
     else:
         return n + soma(n-1)
     

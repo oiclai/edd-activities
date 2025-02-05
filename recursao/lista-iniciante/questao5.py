@@ -24,3 +24,5 @@ def compareStr(str1, str2):
 str1 = 'claraaaaa'
 str2 = 'clareeeee'
 print(compareStr(str1, str2))
+# ------------------------------------------------------------------------------------------
+
