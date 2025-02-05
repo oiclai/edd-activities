@@ -1,0 +1,18 @@
+modelo relacional (logico)
+- teoria dos conjuntos foi base
+- atraves de linhas (tuplas) e colunas(atributos) | com dominios definidos
+
+[ codigo | nome | cpf ] -> coluna (atributos)
+|   001  | Clara| 3453|
+|   002  |  Ana | 2345|
+|   003  | Maria| 9082| -> linha (tupla)
+
+> dominios : conjunto de valores diferentes definidos p um atributo
+- dominio discreto: valores diferentes, definidos previamente
+- dominio continuo: valores dentro de um intervalo
+- dominio aberto: conj de valores permitidos 
+- dominio nulo: valor nulo
+
+> chave primaria: identifica cada linha em uma tabela com unicidade
+> chave candidata: identifica cada linha em uma tabela de forma ALTERNATIVA - n permite repetições
+> chave esrtrangeira:
