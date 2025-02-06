@@ -12,7 +12,24 @@ modelo relacional (logico)
 - dominio continuo: valores dentro de um intervalo
 - dominio aberto: conj de valores permitidos 
 - dominio nulo: valor nulo
+> caract. basicas:
+- integridade de dominio: especif. que um valor associado a um atributo deve pertencer ao dominio do atributo
+
+Cada coluna de uma tabela tem um domínio (conjunto de valores permitidos).
+Exemplo: se uma coluna armazena idades, os valores devem ser números positivos, e não textos ou números negativos.
+
+- integridade de unicidade: especif. que o valor do campo é unico n podendo haver repeticao
+
+Alguns campos não podem ter valores repetidos.
+Exemplo: um banco de dados de alunos pode exigir que cada número de matrícula seja único.
+
+- integridade de vazio: especif quais atributos podem ser nulos
+
+Exemplo: um cadastro de clientes pode exigir que o campo nome seja preenchido, mas o campo telefone pode ser opcional.
 
 > chave primaria: identifica cada linha em uma tabela com unicidade
 > chave candidata: identifica cada linha em uma tabela de forma ALTERNATIVA - n permite repetições
-> chave esrtrangeira:
+> chave esrtrangeira: atributo ou conjunto de atributos que estabelecem um relacionamento entre duas tabelas
+
+
+autorelacionamento - chave estrangeira faz parte da propria tabela
